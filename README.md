@@ -1,69 +1,48 @@
 # ChatGPT2Scratch
 
-[日本語](README.ja.md)
+ChatGPT2Scratch は、Scratch ブロックから OpenAI の ChatGPT を利用したアプリケーションを開発できる Scratch の拡張機能です。
 
-ChatGPT2Scratch is a Scratch extension that allows you to develop applications using OpenAI's ChatGPT through Scratch blocks.
-
+オリジナル
 https://ichiroc.github.io/chatgpt2scratch/
 
-## Usage
+## 使い方
 
-To use ChatGPT2Scratch:
+1. ローカルPC上のLLMにアクセスすることで、APIキーを不要にしました。
+2. 公開ページ準備中
+3. 「拡張機能を選ぶ」画面を開き「ChatGPT2Scratch」を選びます
+4. 最初に「API キーをセット」ブロックを実行して、 OpenAI のサイトから取得した API キーをセットします
+5. 「〜〜の答え」のブロックを実行すると ChatGPT からの返答を取得することができます
 
-1. You need to obtain an API Key from the [OpenAI website](https://openai.com/) in advance.
-1. Open the [official website](https://ichiroc.github.io/chatgpt2scratch/).
-1. Open the "Choose an Extension" screen and select "ChatGPT2Scratch".
-1. Execute the "Set API Key" block first and set the API Key obtained from the OpenAI website.
-1. When you execute the "Get answer to ~" block, you can get a response from ChatGPT.
+## 開発者向け
 
-## About API usage fees
+自身のコンピュータでこの拡張を実行する方法を解説します。
 
-ChatGPT2Scratch uses the **gpt-4o-mini** model of OpenAI's API.
-
-There is a fee for using OpenAI's API.
-Each input and output string is broken down into units called tokens, and a fee is charged per token.
-
-For more information, please see the following page
-
-https://openai.com/pricing
-
-To find out how many tokens a given string will be, the following tool is useful.
-
-https://platform.openai.com/tokenizer
-
-## For Developers
-
-To run the ChatGPT2Scratch extension on your computer, follow these steps:
-
-1. Clone the scratch-gui repository:
+1. scratch-gui のレポジトリをクローンします
 
 ```sh
-git clone --depth 1 git@github.com:LLK/scratch-gui.git
+git clone https://github.com/scratchfoundation/scratch-gui.git
 cd scratch-gui
 npm install
 ```
 
-2. Clone the chatgpt2scratch repository (this repository):
+2. chatgpt2scratch のレポジトリ（このレポジトリ）をクローンします
 
-Run the following commands in the scratch-gui directory.
+ディレクトリは scratch-gui のまま以下を実行します。
 
 ```sh
-git clone git@github.com:ichiroc/chatgpt2scratch.git
+git clone https://github.com/ichiroc/chatgpt2scratch.git
 sh chatgpt2scratch/install.sh
 ```
 
-3. Run npm start:
+3. `npm start` します
 
 ```sh
 npm start
 ```
 
-You can access it at http://localhost:8601.
+http://localhost:8601 を開けばアクセスできます
 
-## License
+## ライセンス
 
-ChatGPT2Scratch is licensed under AGPL 3.0. It is freely available for anyone to use and modify. However, if you make any modifications, you are required to share the source code.
+ChatGPT2Scratch には AGPL 3.0 が適用されます。誰でも自由に利用、変更ができます。もし変更した場合はソースコードを共有する必要があります。
 
-## Release Notes
-
-https://github.com/ichiroc/chatgpt2scratch/releases
