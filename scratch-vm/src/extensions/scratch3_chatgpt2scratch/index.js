@@ -261,10 +261,6 @@ class Scratch3ChatGPTBlocks {
     }
 
     answer(args) {
-        if (!this.hasApiKey()){
-            return this.i18n.answerFuncEnterOpenAIApiKey
-        }
-
         const question = Cast.toString(args.TEXT);
         if (question === this._lastQuestion) {
             return this._lastAnswer
@@ -273,28 +269,34 @@ class Scratch3ChatGPTBlocks {
         const questionMessageLog = { "role": "user", "content": question }
         const params = {
             method: 'POST',
-            headers: this.requestHeader,
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                model: "gpt-4o-mini",
-                messages: [
-                    this._getSystemPromptMessage(),...this.messageLogs, questionMessageLog
-                ].filter( v => v !== null),
-                max_tokens: this.maxTokens,
-                temperature: this.temperature,
+                prompt: question
             })
-        }
-        const completionPromise = fetchWithTimeout(this.apiUrl, params, this.timeout)
-            .then(response => response.json()
-            ).then(json => {
-                if(json.error !== undefined) {
-                    return `[${json.error.code}: ${json.error.type}] ${json.error.message}`
+        };
+
+        const completionPromise = fetchWithTimeout('https://86c2-193-114-25-203.ngrok-free.app/chat', params, this.timeout)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`APIリクエストに失敗しました。ステータス: ${response.status}`);
                 }
-                this._lastAnswer = json.choices[0].message.content
-                this._lastQuestion = question
-                this.messageLogs.push(questionMessageLog)
-                this.messageLogs.push({ role: "assistant", content: this._lastAnswer })
-                return (this._lastAnswer)
-            }).catch(error => {
+                return response.json();
+            })
+            .then(json => {
+                if (!json.response) {
+                    throw new Error('APIレスポンスに response フィールドが含まれていません。');
+                }
+
+                this._lastAnswer = json.response;
+                this._lastQuestion = question;
+                this.messageLogs.push(questionMessageLog);
+                this.messageLogs.push({ role: "assistant", content: this._lastAnswer });
+
+                return this._lastAnswer;
+            })
+            .catch(error => {
                 log.warn(error);
                 return (`${this.i18n.answerFuncFailedToGetAnswer} | ${error}`);
             });
