@@ -4,30 +4,16 @@
 
 ChatGPT2Scratch は、Scratch ブロックから OpenAI の ChatGPT を利用したアプリケーションを開発できる Scratch の拡張機能です。
 
+オリジナル
 https://ichiroc.github.io/chatgpt2scratch/
 
 ## 使い方
 
-1. 事前に [OpenAI](https://openai.com/) のサイトから API Key を取得する必要があります。([APIキーの取得方法](APIKEY_SETUP.ja.md))
-2. [公式サイト](https://ichiroc.github.io/chatgpt2scratch/) を開きます
+1. ローカルPC上のLLMにアクセスすることで、APIキーを不要にしました。
+2. 公開ページ準備中
 3. 「拡張機能を選ぶ」画面を開き「ChatGPT2Scratch」を選びます
 4. 最初に「API キーをセット」ブロックを実行して、 OpenAI のサイトから取得した API キーをセットします
 5. 「〜〜の答え」のブロックを実行すると ChatGPT からの返答を取得することができます
-
-## API の利用料について
-
-ChatGPT2Scratch は OpenAI の API の **gpt-4o-mini** モデルを利用しています。
-
-OpenAI の API 利用には料金が発生します。
-入力と出力の文字列をそれぞれトークンと呼ばれる単位に分解して、トークンごとに費用が発生します。
-
-詳しくは次のページをご確認ください。
-
-https://openai.com/pricing
-
-ある文字列がどれくらいのトークン数となるのかを調べるには、次のツールが便利です。
-
-https://platform.openai.com/tokenizer
 
 ## 開発者向け
 
@@ -36,7 +22,7 @@ https://platform.openai.com/tokenizer
 1. scratch-gui のレポジトリをクローンします
 
 ```sh
-git clone --depth 1 git@github.com:LLK/scratch-gui.git
+git clone https://github.com/scratchfoundation/scratch-gui.git
 cd scratch-gui
 npm install
 ```
@@ -46,7 +32,7 @@ npm install
 ディレクトリは scratch-gui のまま以下を実行します。
 
 ```sh
-git clone git@github.com:ichiroc/chatgpt2scratch.git
+git clone https://github.com/ichiroc/chatgpt2scratch.git
 sh chatgpt2scratch/install.sh
 ```
 
@@ -62,6 +48,3 @@ http://localhost:8601 を開けばアクセスできます
 
 ChatGPT2Scratch には AGPL 3.0 が適用されます。誰でも自由に利用、変更ができます。もし変更した場合はソースコードを共有する必要があります。
 
-## Release Notes
-
-https://github.com/ichiroc/chatgpt2scratch/releases
